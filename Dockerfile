@@ -1,14 +1,19 @@
-FROM python:3.11-slim
-
-RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+FROM python:3.12-slim
 
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y \
+    git \
+    gcc \
+    g++ \
+    make \
+    ninja-build \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY requirements.txt .
+
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-ENV PYTHONUNBUFFERED=1
-
-CMD ["uvicorn", "app.api:app", "--host", "0.0.0.0", "--port", "10000"]
+CMD ["sh", "-c", "uvicorn app.api:app --host 0.0.0.0 --port ${PORT:-8080}"]

@@ -1,7 +1,47 @@
+# Virtual environments
 .venv/
-__pycache__/
+.venv_old/
+
+# Environment variables / secrets
 .env
-docs/images/
-docs/products/
+.env.*
+!.env.example
+
+# Python
+__pycache__/
 *.pyc
 
+# Logs
+*.log
+
+# Local/generated files
+docs/images/
+docs/products/
+
+# Backup copies
+*.before_*
+
+# Large local data and results
+data/**
+results/**
+!data/README.md
+!results/README.md
+
+# Local backups
+backups/
+local_backups/
+
+# Python caches
+**/__pycache__/
+
+# Development backup versions
+*.before_*
+*_before_*.py
+
+# Large evaluation data
+scripts/evaluation/*.jsonl
+# Reproducibility documentation for the synthetic timeline
+!data/synthetic_patient_timeline/
+data/synthetic_patient_timeline/*
+!data/synthetic_patient_timeline/timeline_rulebook.md
+!data/synthetic_patient_timeline/timeline_schema.md
